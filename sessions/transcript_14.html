@@ -1,0 +1,432 @@
+<!-- Last updated for Version 2.1 -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>བཀའ་ཁྲིད་ཐོས་ཀློག་སྦྲགས་མ།</title>
+    <link rel="stylesheet" href="../css/hyperaudio-lite-player.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jomolhari">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.js"></script>
+    <style>
+      :root {
+        --primary-color: #4f6fa7; /* Softer blue */
+        --secondary-color: #475569;
+        --accent-color: #d48b4e; /* Soft amber/gold */
+        --background-color: #f7fafc;
+        --text-color: #23272f;
+        --light-gray: #f5f6fa;
+        --border-color: #e2e8f0;
+        --hover-color: #e3e7ee;
+        --timecode-bg: #f9f5e7;
+        --timecode-text: #d48b4e;
+        --active-bg: #f7f3e7;
+        --active-highlight: #d4a94e;
+        --card-shadow: 0 4px 16px rgba(79, 111, 167, 0.07), 0 1.5px 4px rgba(0, 0, 0, 0.06);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.7;
+        color: var(--text-color);
+        background-color: var(--background-color);
+        padding: 0;
+        margin: 0;
+        min-height: 100vh;
+        font-size: 1.07rem;
+        letter-spacing: 0.01em;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 1.5rem 1rem;
+        }
+      }
+
+      header {
+        margin-bottom: 3rem;
+        text-align: center;
+        padding: 1.5rem 0;
+      }
+
+      h1 {
+        font-size: 2.7rem;
+        font-weight: 800;
+        margin-bottom: 1.1rem;
+        color: var(--secondary-color);
+        letter-spacing: -0.025em;
+        text-shadow: 0 2px 8px rgba(79, 111, 167, 0.05);
+      }
+
+      h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 2.5rem 0 1.2rem;
+        color: var(--secondary-color);
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 0.6rem;
+        letter-spacing: -0.012em;
+      }
+
+      h3 {
+        font-size: 1.35rem;
+        font-weight: 500;
+        margin: 1.75rem 0 0.75rem;
+        color: var(--secondary-color);
+        letter-spacing: -0.01em;
+      }
+
+      audio {
+        width: 100%;
+        margin: 1rem 0 0;
+        border-radius: 21px;
+        box-shadow: var(--card-shadow);
+        height: 40px;
+        transition: all 0.3s ease;
+      }
+
+      audio:focus,
+      audio:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05), 0 3px 6px rgba(0, 0, 0, 0.08);
+        transform: translateY(-1px);
+      }
+
+      /* Audio player styling */
+
+      /* Session links styling */
+      /* Table of contents styling */
+
+      .toc-section {
+        background-color: #fff;
+        border-radius: 18px;
+        padding: 1.5rem 1.25rem;
+        margin: 2rem 0;
+        box-shadow: var(--card-shadow);
+        border: 1.5px solid var(--border-color);
+        transition: box-shadow 0.2s, border-color 0.2s;
+      }
+
+      .toc-section:last-child {
+        margin-bottom: 0;
+      }
+
+      .toc-section-title {
+        font-size: 1.22rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        margin-bottom: 1.3rem;
+        padding-bottom: 0.35rem;
+        border-bottom: 1.5px solid var(--border-color);
+        letter-spacing: 0.01em;
+      }
+      .toc-section-title .tibetan {
+        font-size: 1.5em;
+        line-height: 1.3em;
+      }
+
+      .toc-section-subtitle {
+        font-size: 0.9rem;
+        opacity: 0.6;
+      }
+
+      /* Session links styling */
+      .session-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--light-gray);
+      }
+      .session-links:first-child {
+        padding-top: 0;
+      }
+      .session-links:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      /* Section dividers */
+      .section-divider {
+        margin: 8rem 0;
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, transparent, var(--border-color), transparent);
+      }
+
+      .session-links a {
+        text-decoration: none;
+        color: var(--primary-color);
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 0.3rem 0.7rem 0.3rem 1rem;
+        border-radius: 9999px;
+        background-color: var(--light-gray);
+        transition: all 0.18s;
+        display: inline-flex;
+        align-items: center;
+        box-shadow: 0 1.5px 5px rgba(79, 111, 167, 0.08);
+        width: fit-content;
+        gap: 0.7rem;
+      }
+
+      .session-links a:hover {
+        background-color: var(--hover-color);
+        box-shadow: 0 4px 12px rgba(212, 169, 78, 0.11);
+      }
+
+      .timecode {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--timecode-bg);
+        color: var(--timecode-text);
+        font-size: 0.875rem;
+        font-weight: 500;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        margin-left: 0.5rem;
+        font-family: 'Inter', sans-serif;
+        letter-spacing: 0.02em;
+      }
+
+      .session-links .tibetan {
+        font-size: 15pt;
+        color: #1d458c;
+        display: block;
+        text-align: center;
+        margin-bottom: 0.1em;
+        white-space: nowrap;
+      }
+      .session-links .english {
+        font-family: 'Inter', sans-serif;
+        display: block;
+        text-align: center;
+        margin-bottom: 0.05em;
+      }
+
+      .session-links .human-time {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--accent-color);
+        background-color: var(--timecode-bg);
+        padding: 0.22rem 0.7rem;
+        border-radius: 9999px;
+        min-width: 3.3rem;
+        text-align: center;
+        display: inline-block;
+        letter-spacing: 0.01em;
+        box-shadow: 0 1.5px 4px rgba(212, 169, 78, 0.07);
+      }
+
+      .tibetan {
+        font-family: Jomolhari, serif;
+        font-weight: normal;
+      }
+
+      h2 {
+        margin-top: 2em;
+      }
+
+      h2 span.tibetan {
+        font-size: 1em;
+        display: block;
+        line-height: 1.3em;
+      }
+
+      /* Improve spacing for timecodes in transcript */
+      .hyperaudio-transcript .timecode {
+        position: relative;
+        top: 10px;
+        display: inline-flex;
+        justify-content: center;
+        min-width: 3.5rem;
+        margin: 0 5px;
+        padding: 0 !important;
+        vertical-align: top;
+      }
+
+      /* Transcript styling */
+      .hyperaudio-transcript {
+        resize: vertical;
+        overflow-y: auto;
+        max-height: 500px;
+        width: 100%;
+        scrollbar-gutter: stable;
+        position: relative;
+        border: 1.5px solid var(--border-color);
+        border-radius: 6px;
+        padding: 2.1rem 1.2rem;
+        background-color: #fff;
+        margin: 1.3rem 0 2.7rem;
+        font-family: Jomolhari, serif;
+        font-size: 1.6rem;
+        line-height: 1.85;
+        box-shadow: var(--card-shadow);
+        transition: box-shadow 0.3s, border-color 0.2s;
+      }
+
+      .hyperaudio-transcript a {
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .hyperaudio-transcript a:hover {
+        background: var(--hover-color);
+        border-color: var(--primary-color);
+      }
+      .hyperaudio-transcript a.active {
+        background-color: #d9f3fc !important;
+        border-color: #d9f3fc !important;
+      }
+
+      /* Custom scrollbar for modern look */
+      .hyperaudio-transcript::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .hyperaudio-transcript::-webkit-scrollbar-track {
+        background: var(--light-gray);
+        border-radius: 8px;
+      }
+
+      .hyperaudio-transcript::-webkit-scrollbar-thumb {
+        background-color: var(--border-color);
+        border-radius: 8px;
+      }
+
+      .hyperaudio-transcript::-webkit-scrollbar-thumb:hover {
+        background-color: var(--secondary-color);
+      }
+
+      .hyperaudio-transcript p > .active {
+        background-color: rgba(59, 130, 246, 0.2);
+        text-decoration: var(--active-highlight) underline;
+        text-decoration-thickness: 2px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+
+      .hyperaudio-transcript p > .unread:not(.active) {
+        opacity: 0.7;
+      }
+
+      #clipboard-text {
+        font-family: Jomolhari, monospace;
+        padding: 0.75rem;
+        background-color: var(--light-gray);
+        border-radius: 4px;
+        margin: 0.5rem 0;
+      }
+
+      #clipboard-confirm {
+        font-size: 0.875rem;
+        color: var(--accent-color);
+        margin-top: 0.5rem;
+      }
+
+      /* Tibetan text styling - preserving original fonts */
+      [lang='bo'] {
+        font-family: Jomolhari, serif;
+      }
+    </style>
+
+  </head>
+    <body>
+      <div id="popover"><a id="popover-btn">Copy to clipboard<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="-130 -110 600 600"><path d="m161,152.9h190c0.1,0 0.1,0 0.2,0 10.8,0 19.6-7.1 19.6-16 0-1.5-14.1-82.7-14.1-82.7-1.3-7.9-9.6-13.8-19.4-13.8l-61.7,.1v-13.5c0-8.8-8.8-16-19.6-16-10.8,0-19.6,7.1-19.6,16v13.6l-61.8,.1c-9.8,0-18,5.9-19.4,13.8l-13.7,80.3c-1.2,14.3 13.5,18.1 19.5,18.1z" fill="currentcolor"/><path d="m427.5,78.9h-26.8c0,0 9.3,53.5 9.3,58 0,30.4-26.4,55.2-58.8,55.2h-190.2c-19.6,0.4-63.3-14.7-58.1-63.9l8.4-49.2h-26.8c-10.8,0-19.6,8.8-19.6,19.6v382.9c0,10.8 8.8,19.6 19.6,19.6h343c10.8,0 19.6-8.8 19.6-19.6v-383c0-10.8-8.8-19.6-19.6-19.6zm-76.5,320.1h-190c-10.8,0-19.6-8.8-19.6-19.6 0-10.8 8.8-19.6 19.6-19.6h190c10.8,0 19.6,8.8 19.6,19.6 0,10.8-8.7,19.6-19.6,19.6zm0-110.3h-190c-10.8,0-19.6-8.8-19.6-19.6 0-10.8 8.8-19.6 19.6-19.6h190c10.8,0 19.6,8.8 19.6,19.6 0,10.8-8.7,19.6-19.6,19.6z" fill="currentcolor"/></svg></a></div>
+
+<dialog id="clipboard-dialog">
+    <h3>The following text has been copied to the clipboard</h3>
+    <p id=clipboard-text></p>
+    <div style="text-align: right;">
+      <button id="clipboard-confirm">ok</button>
+    </div>
+</dialog>
+
+<audio id="hyperplayer1" style="position:relative; width:97%" src="https://d3ctxlq1ktw2nl.cloudfront.net/staging/2025-8-2/e2ea5168-5fa7-66b8-806e-96843251ed22.mp3" type="audio/mp3" controlsList="nodownload" controls></audio>
+
+          
+          <div id="hypertranscript1" class="hyperaudio-transcript" style="resize: vertical; overflow-y:scroll; height:800px; width: 97%; scrollbar-gutter: stable; position:relative; border-style:dashed; border-width: 1px; border-color:#999; padding: 8px">
+          <article><section>
+<p>
+<a data-m="0" data-d="50719">ཆེ་ཆུང་ཕྱོགས་ཆ་ལ་སོགས་པའང་ངེས་པར་ཡོད་དགོས་པས་དེའི་རང་བཞིན་བརྟག་དགོས་ཏེ། དེ་ལྟར་བརྟགས་པས་འཚོལ་ས་དང་འཚོལ་མཁན་དུ་སྣང་བའི་གཟུང་འཛིན་ཡུལ་མེད་རྟེན་བྲལ་སྨྲ་བསམ་བརྗོད་མེད་ཁས་ལེན་ཐམས་ཅད་དང་བྲལ་བའི་ངང་དུ་ཧ་ཕྱད་དེ་ལུས་ན། གཞི་མེད་རྩ་བྲལ་ཆོས་སྐུ་སྐྱེ་བ་མེད་པའི་དོན་ཁོང་དུ་ཆུད་པ་ནི། <span class="timecode">50s</span></a>
+<a data-m="50719" data-d="52577">དབུ་མ་ཐལ་འགྱུར་ལས། ང་ལ་ཁས་ལེན་མེད་པས་ན། །ང་ནི་སྐྱོན་མེད་ཁོ་ན་ཡིན། །ཞེས་པའི་ཐོག་ཏུ་སླེབ་ཅིང་སླེབ་ཚུལ་ཡང་དིང་སང་གྲུབ་པའི་མཐའ་འདི་ཉིད་འཛིན་པར་རློམ་པ་རྣམས་ལྟར་ཡིད་དཔྱོད་ཀྱི་བློས་བཞག་པ་མ་ཡིན་པར་རང་བཞིན་རྫོགས་པ་ཆེན་པོའི་ཆོས་ཉིད་ཀྱི་དོན་མཐོང་བས་སླེབས་པ་ཡིན་ཞེས་བདག་ཉིད་སྨྲའོ། །<span class="timecode">52s</span></a>
+<a data-m="103296" data-d="81192">གཉིས་པ་གནས་ས་གནས་མཁན་ལ་བརྟག་པ་ནི། སེམས་འདི་ད་ལྟ་ཕྱི་རུ་ཤར་ན་ཕྱིའི་ཡུལ། ནང་དུ་ཤར་ན་ནང་གི་ལུས། དེ་དག་གི་ཕྱི་ནང་སྟོད་སྨད་མགོ་མཇུག་ལ་སོགས་པར་གང་དུ་གནས་བརྟགས་པས་གནས་ས་མཐོང་ན་དེའི་དབྱིབས་དང་ཁ་དོག་བྱེད་ལས་ལ་སོགས་པའི་རྟོག་དཔྱོད་དང་དྲི་བརྩད་ཀྱི་རྫུན་ཕུགས་གཏིབ་ཅིང་། <span class="timecode">1m21s</span></a>
+<a data-m="184488" data-d="56585">ཕྱི་ནང་གང་དུའང་མ་མཐོང་ནས་གནས་མཁན་གྱི་ཐོག་ཏུ་དཔྱད་པའི་ཚེ་ཀུན་གཞིའི་རྣམ་ཤེས་རང་གསལ་ཙམ་བདེན་གྲུབ་ཏུ་ཤར་ནའང་སེམས་ཙམ་རྣམ་རྫུན་པར་ཉེ་ལ། འདིར་སེམས་ལ་རྒྱུ་མཚན་མེད་པས་ཆུ་ལ་ཡི་གེ་བྲིས་པའི་ཚེ་རང་ས་ན་རྗེས་མེད་དུ་ཞིག་པའམ། <span class="timecode">56s</span></a>
+<a data-m="241073" data-d="34480">གྲུ་རྡིབ་པའི་ཚེ་ཆུ་ལ་འཇུས་པ་ལྟར་གནས་ས་བཙལ་བའི་མོད་ལ་འཚོལ་མཁན་རང་ཞིག་པས་གནས་བྱེད་ཀྱི་མཁན་པོ་ངོས་བཟུང་དང་བྲལ་བར་གཏན་ལ་ཕེབས་པ་ནི་ལོངས་སྐུ་འགག་པ་མེད་པའི་དོན་ཁོང་དུ་ཆུད་པ་ཡིན་ནོ། །<span class="timecode">34s</span></a>
+<a data-m="275553" data-d="66695">དེ་ལྟར་བའི་སྐབས་ན་ཚེར་མས་བཏབ་པ་ལ་སོགས་སྒོ་གསུམ་གྱི་སྟེང་དུ་ཚོར་བའི་ཉེར་ལེན་ལས་མྱོང་རེག་གི་མཚན་མ་གང་དང་གང་དུ་ཤར་བ་དེ་དང་དེར་ཡོད་པ་ལྟར་སྣང་བ་ནི། འདུ་བྱེད་ཀྱི་ཕུང་པོས་རྒྱུ་བྱས། ཕྲལ་བྱུང་གི་རྣམ་པར་རྟོག་པས་རྐྱེན་བྱས། གཟུང་བའི་ཡུལ་ལ་འཛིན་པའི་སེམས་ཆགས་པས་བདག་པོའི་འབྲས་བུར་སྨིན་པ་སྟེ། <span class="timecode">1m6s</span></a>
+<a data-m="342248" data-d="29865">གཟུང་འཛིན་ཡུལ་སྟོངས་ཏེ་ཆོས་ཉིད་ཟད་སར་འཁྱོལ་བའི་ཚེ་གཤེད་མ་བརྒྱས་བསྐོར་ཡང་ཉམ་ང་བ་དང་བག་ཚ་བ་མེད་པའི་གོ་དོན་ཡང་འདིས་ལྷོངས་པ་ཡིན་ནོ། །<span class="timecode">29s</span></a>
+<a data-m="372113" data-d="52012">གསུམ་པ་འགྲོ་ས་འགྲོ་མཁན་ལ་བརྟག་པ་ནི། ཕྱི་ནང་སྣོད་བཅུད། སྣང་སྟོང་ཡོད་མེད་ལ་སོགས་གང་གི་ཕྱོགས་སུ་ཡང་འགྲོ་བའི་ཡུལ་བརྟགས་པས་འགྲོ་ས་མ་རྙེད་པས་འབྲས་བུ་ལ་རེ་དོགས་སུ་འཛིན་པའི་བློ་ལྡོག །<span class="timecode">52s</span></a>
+<a data-m="424125" data-d="81224">གལ་ཏེ་རྙེད་ན་འགྲོ་མཁན་གྱི་བྱད་བཞིན་ལ་སོགས་པའི་མཚན་ཉིད་ཀྱང་ཤེས་དགོས་པས་བརྟགས་པའི་ཚེ་དེ་ལྟར་མི་འདུག་པས་བྱས་པའི་ཆོས་ཀྱིས་འཚང་མི་རྒྱ་བར་ཡིད་ཆེས། དེ་ལྟར་འགྲོ་ས་མེད་པས་ཡུལ་སྣང་སེམས་ཀྱིས་བཟོས་པར་ཐག་ཆོད། འགྲོ་མཁན་མེད་པས་ཡུལ་ཅན་རང་བཞིན་མེད་པའི་གདེང་རྙེད། <span class="timecode">1m21s</span></a>
+<a data-m="505349" data-d="81430">དེའི་ཚེ་རིག་སྟོང་འགྲོ་འོང་མེད་པ་སྤྲུལ་པའི་སྐུར་གཏན་ལ་ཕེབས་ཤིང་། འདི་ལྟར་བྱུང་གནས་འགྲོ་གསུམ་ཐུན་མོང་མ་ཡིན་པའི་ཁོངས་སུ་སེམས་ཀྱི་ཁང་བུ་རྡིབ་པའི་མན་ངག་ཀྱང་ཚང་བས་ཁྱད་པར་འཕགས་པའི་མྱུར་ལམ་ཡིན་ནོ། །<span class="timecode">1m21s</span></a>
+<a data-m="586779" data-d="87511">དེ་ལྟར་སེམས་ཀྱི་སྔོན་འགྲོའི་སྤྱོད་པ་བྱས་པས་ཐུན་མོང་དུ་སེམས་ཀྱི་སྡིག་སྒྲིབ་འདག་ཅིང་བར་ཆད་ཞི། མངོན་ཞེན་ལྡོག །ཁྱད་པར་དུ་འཁོར་འདས་རུ་ཤན་ཕྱེད་པས་སེམས་ཀྱི་མཚན་ཉིད་རིག་སྟོང་ཡེ་ཤེས་སུ་གྲོལ། མཐར་ཐུག་སངས་རྒྱས་ཀུན་དང་གཉིས་སུ་མེད་པའི་ཐུགས་རྡོ་རྗེ་གདོད་མའི་གཞི་ཐོག་ཏུ་ཕྱིན་པར་བྱེད་དོ།།  །། <span class="timecode">1m27s</span></a>
+<a data-m="674290" data-d="41249">གཉིས་པ་ལ་གཉིས། རྣལ་དུ་དབབ་པ་དང་། སོར་གཞུག་པའོ། །དང་པོ་ནི། ཐལ་འགྱུར་ལས། འདི་དུས་ལུས་ངག་སེམས་ཀྱི་གནད། །རྣལ་འབྱོར་ལྡན་པས་རྣལ་དབབ་བྱ། །ཞེས་ཁྱད་པར་ཅན་གྱི་སྔོན་འགྲོའི་སྤྱོད་པ་དེ་རྣམས་ཀྱིས་ཁམས་དང་འབྱུང་བ་འཁྲུགས་པར་གྱུར་པ་རྣལ་མ་མ་བཅོས་པའི་གཤིས་སུ་གཏན་ལ་དབབ་པའི་ཕྱིར། <span class="timecode">41s</span></a>
+<a data-m="715539" data-d="59970">ལུས་ཀྱི་གནད་བཟང་ངན་བླང་དོར་ལས་འདས་པ་དུར་ཁྲོད་ཀྱི་མི་རོ་བཞིན་དུ་ཅི་བདེར་གཞག །ངག་སྨྲ་བརྗོད་དང་བྲལ་བའི་གཤིས་ལ་དབུགས་ཀྱི་འགྲོ་འོང་ཙམ་ཡང་དལ་བར་བསླབ། ཡིད་དྲན་རྟོག་རྣམ་གཡེང་ལས་གྲོལ་བ་སྤྲིན་དེངས་པའི་ནམ་མཁའ་ལྟར་འཇོག་པ་སྟེ། <span class="timecode">59s</span></a>
+<a data-m="775509" data-d="25277">བྱ་བ་དང་བྱེད་པ་མེད་པའི་རྣལ་འབྱོར་དང་ལྡན་པས་རྣལ་དུ་དབབ་པ་ལ་ཞག་ཉི་ཤུ་རྩ་གཅིག་གམ། བདུན་ནམ་གསུམ་ལ་སོགས་པ་བྱ་སྟེ། དགོས་པ་ནི་ཀློང་གསལ་ལས། འདི་ལྟར་རྣལ་དུ་སུས་ཕབ་པ། །འབྱུང་འཁྲུགས་ནད་རྐྱེན་ཞི་བ་དང་། །འཛིན་པ་རང་གྲོལ་ཉིད་དུ་འགྱུར། །ཞེས་སོ། །<span class="timecode">25s</span></a>
+<a data-m="800786" data-d="36485">གཉིས་པ་སོར་གཞུག་པ་ནི། འདས་རྗེས་ལས། ཉན་ཐོས་བྱང་སེམས་ཁྲོ་བོ་ཡི། །ལྟ་སྟངས་ཉིད་ཀྱིས་སོར་ཡང་གཞུག །དེས་ནི་གསུམ་པོ་སོར་ཆུད་ནས། །ཉམས་ལེན་ཉིད་ལ་བརྩོན་པར་འགྱུར། །ཞེས་དང་པོ་ཉན་ཐོས་ཀྱི་ལྟ་སྟངས་རྣམ་སྣང་ཆོས་བདུན་དང་ལྡན་པས་བྱུང་ཚོར་གྱི་རྟོག་པ་ལ་བཟོ་མི་འཆོས་པ་ཉིད་དུ་གཞག་གོ །<span class="timecode">36s</span></a>
+<a data-m="837271" data-d="50065">གཉིས་པ་བྱང་ཆུབ་སེམས་དཔའི་ལྟ་སྟངས་མིག་གཉའ་ཤིང་གང་ཙམ་དུ་རྟེན་མེད་དུ་གཞག །གསུམ་པ་ཁྲོ་བོའི་ལྟ་སྟངས་རྐང་པ་གྱད་ཀྱི་དོར་སྟབས་སུ་བགྲད། མིག་སྡང་མིག་ཏུ་གཡོ་ཞིང་བར་སྣང་ལ་བལྟ། ངག་ཧ་ཧ་ཞེས་ཁྲོ་བོའི་གད་མོ་དང་། ཧི་ཧི་ཞེས་ཁྲོ་མོའི་རྒྱངས་གླུ་བརྗོད་པའི་ངང་ནས་སྣང་བའི་རྫུན་ཕུགས་གཏིབ་པའི་བརྟུལ་ཞུགས་ལ་རྩལ་སྦྱང་ངོ་། །<span class="timecode">50s</span></a>
+<a data-m="887336" data-d="30915">དགོས་པ་ནི་ཀློང་གསལ་ལས། ཉན་ཐོས་ཞི་བའི་ལྟ་སྟངས་ཀྱིས། །ལུས་ངག་ཡིད་གསུམ་རྣལ་དུ་ཕེབས། །བོ་དྷི་སཏྭའི་ལྟ་སྟངས་ཀྱིས། །རྣལ་ཕེབས་བདེ་བ་ཉིད་ཐོབ་འགྱུར། །ཁྲོ་བོ་ཉིད་ཀྱི་ལྟ་སྟངས་ཀྱིས། །རྣལ་ཕེབས་ཡོན་ཏན་གསུམ་ཡང་འགྲུབ། །ཅེས་སོ། །ཡི་གེ་རྙིང་པ་དག་ལ་རྣམ་སྣང་ཆོས་བདུན་ལས་ཐ་དད་པའི་མིག་སྣ་རྩེར་གཏོད་པ་དང་། བྱང་སེམས་ལྟ་སྟངས་ཞི་བར་མི་གནས་པ་སོགས་སྣང་བ་ཧོལ་རྒྱུགས་སོ།།  །། <span class="timecode">30s</span></a>
+<a data-m="918251" data-d="60972">གཉིས་པ་དངོས་གཞིའི་ཁྲིད་ཚུལ་ལ་གཉིས་ལས། དང་པོ་སྐུ་བཞིའི་ས་བོན་འདེབས་ཤིང་མྱུར་ལམ་སྒོམ་པའི་སྣོད་དུ་བསྒྲུབ་ཕྱིར་དབང་གི་དཀྱིལ་འཁོར་ཆེན་པོར་འཇུག་ཅིང་སྨིན་པར་བྱེད་པའི་བྱ་བ་རྣམས་གནས་སྐབས་འདི་ཉིད་དུ་དོན་གྱིས་ཐོབ་པ་ཡིན་ལ། ཁྲིད་ཀྱི་བྱ་བ་མཐར་ཕྱིན་ནས་དབང་བསྐུར་བ་སོགས་དོན་ལ་མི་གནས་ཤིང་། རྒྱུད་དོན་གཟིགས་པའི་སྤྱན་སྔར་ཡང་མི་མཛེས་པ་ཉིད་དོ། །<span class="timecode">1m0s</span></a>
+<a data-m="979223" data-d="95801">གཉིས་པ་ལའང་ངེས་ཚིག་གི་གོ་ནས་རྡོ་རྗེ་སྙིང་པོ་བླ་ན་མེད་པའི་ཐེག་པ་འདི་འབྲས་བུ་ལམ་དུ་བྱེད་པ་སངས་རྒྱས་པའི་ལམ་ཐམས་ཅད་ཀྱི་དངོས་གཞི་ཡིན་པའི་རྒྱུ་མཚན་དང་། འབྲས་བུའི་ངོ་བོ་རིག་ཐོག་ཏུ་ངོ་སྤྲད་པའོ། །<span class="timecode">1m35s</span></a>
+<a data-m="1075024" data-d="122821">དང་པོ་ནི། གཞི་ཡིན་ལ་དངོས་མ་ཡིན་པ་ལྷ་ཁང་མཐོང་ཡང་རྟེན་གསུམ་མ་མཐོང་བ་ལྟ་བུ་ཟབ་གསལ་དང་། <span class="timecode">2m2s</span></a>
+<a data-m="1197845" data-d="135620">སྣང་སྟོང་ལ་སོགས་པ་གཅིག་ལ་གཅིག་འབྲེལ་གྱི་ཚིག་ཙམ་ལ་ལྟ་སྒོམ་ཡིན་པར་ཡིད་བརྟན་འཆའ་བའང་མ་ཡིན། <span class="timecode">2m15s</span></a>
+<a data-m="1333465" data-d="139165">དངོས་ཡིན་ལ་གཞི་མ་ཡིན་པ་རྟེན་གསུམ་མཐོང་ཡང་མཚན་ཉིད་གཏན་ལ་མ་ཕེབས་པ་མུ་བཞིའམ། མཐའ་བརྒྱད་སྤྲོས་བྲལ་རྟོག་དཔྱོད་ཀྱིས་གོ་ཡང་མྱོང་ཐོག་ཏུ་མ་ཆགས་པའི་པྲ་ཡས་པ་ཡང་མ་ཡིན། <span class="timecode">2m19s</span></a>
+<a data-m="1472630" data-d="55847">དངོས་དང་གཞི་གཉིས་ཀ་མ་ཡིན་པ་འཕྲུལ་སྣང་དང་ཤཱཀྱ་མུ་ནེ་གང་ཡང་མ་མཐོང་བ་ལྟ་བུ་ཆོས་ཐམས་ཅད་རང་བཞིན་མེད་དོ་ཞེས་ཡིད་དཔྱོད་ཙམ་གྱིས་ལམ་དུ་བྱེད་པ་ལས་རང་བཞིན་མེད་པའི་ངོ་བོ་བཅར་ཕོག་ཏུ་ངོ་མ་འཕྲོད་པས་འཆི་ཁར་ཐ་མལ་དུ་ལུས་པའི་གྲུབ་པའི་མཐའ་མ་ཡིན་པར། <span class="timecode">55s</span></a>
+<a data-m="1528477" data-d="53895">འདི་རང་བཞིན་རྫོགས་པ་ཆེན་པོ་སྙིང་ཐིག་གི་ལྟ་བ་དངོས་དང་གཞི་གཉིས་ཀ་ཡིན་པའི་ངོ་བོ་རྟེན་དང་བརྟེན་པའི་གནས་ཚུལ་ཇི་བཞིན་པ་གཏན་ལ་ཕེབས་པ་དང་འདྲ་བ་ལྟ་སྒོམ་ཡིན་སྙམ་ལ་རག་མ་ལུས་པར་རང་གྲོལ་མངོན་སུམ་པར་སྟོན་པའོ། །<span class="timecode">53s</span></a>
+<a data-m="1582372" data-d="110322">གཉིས་པ་ལ་གཉིས། དབང་པོ་རྣོན་པོ་སྒོམ་དུ་མེད་ཀྱང་ལ་བཟླ་བས་གྲོལ་བ་ཁྲེགས་ཆོད་ཀྱི་གདམས་པ་དང་། <span class="timecode">1m50s</span></a>
+<a data-m="1692694" data-d="83735">བརྩོན་འགྲུས་ཆེན་པོས་ཐོད་རྒལ་དུ་སྒོམ་པས་སྐུ་གསུམ་ལམ་སྣང་ལ་གྲོལ་ཏེ་ཕུང་པོ་ལྷག་མེད་དུ་མྱ་ངན་འདའ་ཚུལ་ལོ། །<span class="timecode">1m23s</span></a>
+<a data-m="1776429" data-d="67946">དང་པོ་ལའང་དབང་པོའི་ཁྱད་པར་གྱི་ངོ་སྤྲོད་ལུགས་གཉིས་ལས། དང་པོ་ཐུན་མོང་བ་ནི། དད་པ་དང་ལྡན་པས་སྙིང་ཐིག་གི་གདུལ་བྱ་ཡིན་ཡང་རྣམ་པར་ཤེས་པ་ལྐོག་ཏུ་གྱུར་པའི་རིགས་ཅན་རྣམས་ལ་ནི་ངོ་སྤྲོད་སྤྲས་པ་ལས། ཨེ་མ་ཧོ། སྣང་བ་སེམས་སུ་ངོ་སྤྲད་པས་སེམས་ལ་བྱན་ཚུད། <span class="timecode">1m7s</span></a>
+<a data-m="1844375" data-d="102359">སེམས་ཉིད་སྟོང་པར་ངོ་སྤྲད་པས་སྟོང་པ་བདེ་བས་རྒྱས་གདབ། སྟོང་པ་རིག་པར་ངོ་སྤྲད་པས་རིག་པ་ཉིད་དབྱིངས་དང་གཉིས་སུ་མེད་པ་དེ་ཁོ་ན་ཆོས་སྐུའོ་ཞེས་པ་ལྟར། སྣང་བ་སེམས་ཀྱིས་བཟོས་པར་ངོ་སྤྲད་པས་བདེན་འཛིན་རང་རྒྱུད་པ་ལྡོག །<span class="timecode">1m42s</span></a>
+<a data-m="1946734" data-d="28585">དེ་ལྟར་བཟོ་བྱེད་ཀྱི་སེམས་སྟོང་པར་སྤྲད་པས་ཕྱི་ཡུལ་དོན་དུ་ཞེན་པ་སྤོང་། སྟོང་པ་རིག་པར་ངོ་སྤྲད་པས་ཆོས་ཉིད་ཆད་ལྟར་མི་གོལ་བའི་གནད་ཙམ་ལ་ཁ་དྲངས་ཏེ་ཁྲིད་པའོ། །<span class="timecode">28s</span></a>
+<a data-m="1975319" data-d="55838">དེ་ནི་སྙིང་ཐིག་གི་དགོངས་པའི་ཕྱོགས་ལ་ཉེ་བ་མ་ཡིན་པར་ད་གདོད་གོ་སྟེ་རང་ཤར་ལས། སྣང་བ་སེམས་ཀྱི་རྣལ་འབྱོར་ནི། །ཐམས་ཅད་ང་ཡི་སེམས་ལས་བྱུང་། །སེམས་ཉིད་རྟོགས་ན་ཅི་བྱར་ཡོད། །དེ་སྐད་ཀུན་ཏུ་བརྗོད་བྱེད་པ། །ང་ཡིས་གྲོལ་བར་མ་བཤད་དོ། །ཞེས་གསུངས་པ་སྟེ། གཞན་དུ་སེམས་དོན་དམ་དུ་མེད། ཀུན་རྫོབ་ཏུ་ཡོད་པར་བཏགས་ནས་ལྟ་སྒོམ་དམིགས་གཏད་ཅན་ལམ་དུ་བྱེད་ཅིང་<span class="timecode">55s</span></a>
+<a data-m="2031157" data-d="30617">དེ་བཞིན་དུ་ཟུང་འཇུག་གི་ཆོས་སྐད་ཀྱང་ཡོད་པ་གཉིས་གཅིག་ལ་གཅིག་འབྲེལ་གྱི་ཟུང་འཇུག་འཆོས་པ་དང་། འདིར་རྫོགས་པ་ཆེན་པོ་གདོད་ནས་རིག་སྟོང་མཉམ་རྫོགས་ཆེན་པོར་སླར་ཟུང་དུ་འཇུག་རྒྱུ་མེད་པ་ཐ་དད་རིས་མེད་ཆེན་པོའི་ཁྱད་འདུག་པའི་ཕྱིར་རོ། །དེའི་ཕྱིར་ཀུན་མཁྱེན་གྱིས། སྣང་བ་སེམས་སུ་ངོ་སྤྲད་པ་དང་། སེམས་ཉིད་སྟོང་པར་ངོ་སྤྲོད་པ་མན་ངག་སྙིང་ཏིག་གི་དགོངས་པ་མ་ཡིན་པར་ཤེས་པར་བྱའོ། །<span class="timecode">30s</span></a>
+<a data-m="2061774" data-d="93399">མན་ངག་འགའ་ཞིག་ཏུ། དེ་ལྟར་བྱུང་སྲིད་ནའང་འོག་མ་དྲང་བ་ཙམ་ལས་ངེས་དོན་མ་ཡིན་པར་ཐག་བཅད་དོ། །ཞེས་གསུངས་ལ། དེ་ལྟར་སྣང་བ་སེམས་མ་ཡིན་པའི་མངོན་སུམ་ཚད་མ་ནི། གཉིད་དང་། བརྒྱལ་བ་དང་། སྙོམས་འཇུག་རྣམ་གཉིས་དང་། རྟག་ཏུ་འདུ་ཤེས་མེད་པ་སྟེ་སེམས་མེད་པའི་གནས་སྐབས་ལྔར་དབུས་མཐའ་ལས་བཤད་པའི་དུས་ན་སྣང་བ་གང་དུའང་མ་སོང་ཞིང་། <span class="timecode">1m33s</span></a>
+<a data-m="2155173" data-d="31100">མདང་གི་རྨི་ལམ་ན་ནོར་བུ་རྙེད་པའམ་དགའ་མགུར་སྤྱད་པ་ལ་དགའ་བ་དང་བདེན་པར་འཛིན་པ་དེ། སད་དུས་ཅི་ཡང་མེད་པས་དྲན་བསམ་དང་སྣང་བ་དཀར་དམར་གློ་བུར་བའི་རྐྱེན་ལས་བྱུང་བ་ངེས་པའི་ཕྱིར་རོ། །<span class="timecode">31s</span></a>
+<a data-m="2186273" data-d="54564">དེང་སང་རྫོགས་པ་ཆེན་པོའི་བསྟན་པ་ཉམས་དམས་པས་ངོ་སྤྲོད་འདི་ཁོ་ནར་ཡིད་བརྟན་འཆའ་བ་མང་བའི་ཕྱིར་འདིར་ལམ་ཐད་དྲང་དུ་བསྟན་པ་ལ་རང་ཤར་ལས། སེང་གེས་རང་སྐད་བཏོན་པས་གཅན་གཟན་ཐམས་ཅད་བརྒྱལ་ཞིང་སྐྲག །རྫོགས་ཆེན་རང་སྐད་སྨྲས་པས་ཐེག་དམན་ཐམས་ཅད་བརྒྱལ། །ཞེས་པ་ལྟར་<span class="timecode">54s</span></a>
+<a data-m="2240837" data-d="78484">རྒྱུ་འབྲས་ངེས་དོན་དུ་སེམས་པའི་སྐལ་མེད་དང་། ཡིད་དཔྱོད་ལ་རྫོགས་ཆེན་རེ་བའི་གང་ཟག་རྣམས་འཁུ་ཞིང་གཤུང་བར་སྲིད་ནའང་ཀུན་མཁྱེན་གྱིས་སྣང་བ་སེམས་སུ་འདོད་པ་འདི་ལོག་རྟོག་གི་མུན་པ་ཆེན་པོ་ཡིན་པས་བསལ་དགོས་སོ། །ཞེས་གདམས་པའི་ཕྱིར་སྤྲོས་ཏེ་བཤད་ནས་ལམ་ལ་བྱི་དོར་བྱས་པ་ཉིད་དོ།།  །། <span class="timecode">1m18s</span></a></p>
+</section></article>
+</div>
+
+
+      <script src="https://w.soundcloud.com/player/api.js"></script>
+      <script src="../js/hyperaudio-lite.js"></script>
+      <script src="../js/hyperaudio-lite-extension.js"></script>
+      <script>
+      // minimizedMode is still experimental - it aims to show the current words in the title, which can be seen on the browser tab.
+      let minimizedMode = false;
+      let autoScroll = true;
+      let doubleClick = false;
+      let webMonetization = false;
+
+      new HyperaudioLite("hypertranscript1", "hyperplayer1", minimizedMode, autoScroll, doubleClick, webMonetization);
+      </script>
+      <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
+      </script>
+  </body>
+</html>
