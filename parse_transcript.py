@@ -39,7 +39,7 @@ def normalize_punct(string):
     return string
 
 
-def gen_ha_page(in_file):
+def gen_ha_page(in_file, filenum):
     # A. parse and prepare chunks
     parsed = parse_srt(in_file)
     chunks = []
@@ -171,17 +171,18 @@ def format_text(chunks):
 files = []
 for f in Path('components').glob('*.srt'):
     file_num = f.stem.split('_', 1)[0]
-    file_num = int(file_num)
+    file_num = (file_num[0], int(file_num[1:]))
     files.append((file_num, f))
 files = sorted(files)
 
 total_text = []
 for file_num, in_file in files:
-    l = audio_links[str(file_num)]
+    file_num = f'{file_num[0]}{file_num[1]}'
+    l = audio_links[file_num]
     ext = l.split('.')[-1]
     player = f'{player_start}{l}{player_middle}{ext}{player_end}'
 
-    transcription, chunks, for_links = gen_ha_page(in_file)
+    transcription, chunks, for_links = gen_ha_page(in_file, file_num)
     transcription = f'\n{transcript_start}\n{transcription}\n{transcript_end}\n\n'
 
     html_page = '\n'.join([head, body_beginning, player, transcription, body_end])
@@ -193,7 +194,14 @@ for file_num, in_file in files:
 index = [index_head, index_body]
 body = []
 for text, idx, f_num in total_text:
-    link = f'{index_link_start}{f_num}{index_link_start2}{idx}{index_link_middle}{text}{index_link_end}'
+    if f_num.startswith('A'):
+        link = f'{index_link_start}{f_num}{index_link_start2}{idx}{index_link_middle1a}{f_num}{index_link_middle2}{text}{index_link_end}'
+    elif f_num.startswith('B'):
+        link = f'{index_link_start}{f_num}{index_link_start2}{idx}{index_link_middle1b}{f_num}{index_link_middle2}{text}{index_link_end}'
+    elif f_num.startswith('C'):
+        link = f'{index_link_start}{f_num}{index_link_start2}{idx}{index_link_middle1c}{f_num}{index_link_middle2}{text}{index_link_end}'
+    else:
+        raise Exception(f'unknown transcription type: {f_num}')
     body.append(link)
 body = ''.join(body)
 index.append(body)

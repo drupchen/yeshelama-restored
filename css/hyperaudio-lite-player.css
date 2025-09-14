@@ -21,10 +21,10 @@
   font-size: 200%;
 }
 
-*.hyperaudio-transcript a {
+.hyperaudio-transcript a {
   cursor: pointer;
   color: #000;
-}*/
+}
 
 
 .hyperaudio-transcript a, a.link {
